@@ -7,6 +7,15 @@ This project is a cousin of `csvkit <http://github.com/onyxfish/csvkit>`_.
 
 **Note: This is only a proof-of-concept to see if this idea makes sense.**
 
+Installation
+------------
+
+It's easy!
+
+::
+
+    pip install ogrkit
+
 Usage
 -----
 
