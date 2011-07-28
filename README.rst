@@ -21,7 +21,7 @@ Usage
 
 To try the difference utility::
 
-    ./ogrdifference INPUT_SHAPEFILE OUTPUT_SHAPEFILE [MASK_SHAPEFILES...]
+    ogrdifference INPUT_SHAPEFILE OUTPUT_SHAPEFILE [MASK_SHAPEFILES...]
 
 Note: this currently only works with shapefiles, but could be extended to work with any format supported by `OGR <http:/www.gdal.org/>`_.
 
