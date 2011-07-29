@@ -27,7 +27,7 @@ class OGRDifference(OGRKitUtility):
 
         driver = ogr.GetDriverByName('ESRI Shapefile')
         dest = driver.CreateDataSource(self.args.output)
-        dest_layer = dest.CreateLayer('masked', geom_type=ogr.wkbMultiPolygon)
+        dest_layer = dest.CreateLayer('difference', geom_type=ogr.wkbMultiPolygon)
         
         for i in range(source_layer.GetLayerDefn().GetFieldCount()):
             dest_layer.CreateField(source_layer.GetLayerDefn().GetFieldDefn(i))
@@ -36,7 +36,7 @@ class OGRDifference(OGRKitUtility):
         mask_boxes = []
 
         for mask in self.args.masks:
-            geo = ogr.Open(mask)
+            geo = ogr.Open(mask, False)
             layer = geo.GetLayer(0)
 
             for feature in layer:
@@ -59,7 +59,4 @@ class OGRDifference(OGRKitUtility):
 
             masked_feature.SetGeometryDirectly(masked_geometry)
             dest_layer.CreateFeature(masked_feature)
-
-if __name__ == '__main__':
-    OGRDifference().main()
 
