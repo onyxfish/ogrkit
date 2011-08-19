@@ -10,7 +10,7 @@ class OGRKitUtility(object):
 
     def __init__(self, args=None, output_file=None):
         """
-        Perform argument processing and other setup for a CSVKitUtility.
+        Perform argument processing and other setup for a OGRKitUtility.
         """
         self._init_common_parser()
         self.add_arguments()
@@ -48,10 +48,18 @@ class OGRKitUtility(object):
         """
         self.argparser = argparse.ArgumentParser(description=self.description, epilog=self.epilog)
         
+        self.argparser.add_argument('-d', '--database', type=str,
+            help='The database to use.') 
+        self.argparser.add_argument('-u', '--user', type=str,
+            help='Database user')
+        self.argparser.add_argument('-p', '--password', type=str,
+            help='Database password.') 
         self.argparser.add_argument('input', metavar='INPUT', type=str,
-            help='The datasource to operate on.')
-        self.argparser.add_argument('output', metavar='OUTPUT', type=str,
-            help='The datasource to write to. Existing files will be deleted')
+            help='The table to use as the subject of the operation.')
+        self.argparser.add_argument('predicate', metavar='INPUT', type=str,
+            help='The table to use the predicate in the operation.')
+        self.argparser.add_argument('output', metavar='OUTPUT', type=str, required=False,
+            help='The table to write to. If not specified the input table will be overwritten.')
 
         if 'v' not in self.override_flags:
             self.argparser.add_argument('-v', '--verbose', dest='verbose', action='store_true',
